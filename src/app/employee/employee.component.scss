@@ -1,0 +1,181 @@
+.container {
+    background-color: white; 
+    padding: 50px 0; 
+}
+
+.form-container {
+    background-color:gray;
+    padding: 30px;
+    border-radius: 10px; 
+    box-shadow: 0px 0px 10px 0px rgb(164, 164, 169)
+}
+
+
+// .address-container {
+//     margin-top: 10px;
+//     padding: 10px;
+//     margin-bottom: 10px; 
+// }
+
+
+
+// h4{
+//     margin-top: 10px;
+//   margin-bottom: 0px; 
+ 
+// }
+
+// label{
+//     color: white;
+// }
+
+// button{
+//     margin-top: 10px;
+// //    margin-left: 160px;
+//     justify-content: center;
+// }
+
+// .edit{
+//     color: blue;
+//     border: none;
+//     text-decoration: none;
+//     background-color: transparent;
+// }
+// .delete{
+//     color: red;
+//     border: none;
+//     text-decoration: none;
+//     background-color: transparent;
+// }
+
+
+// .card{
+
+//       position: absolute;
+//       top: 50%;
+//       left:50%;
+//       transform: translate(-49%, -49%);
+//       z-index: 1;
+// }
+
+// card{
+
+//     position: absolute;
+//     top: 50%;
+//     left:50%;
+//     transform: translate(-49%, -49%);
+//     z-index: 1;
+// }
+.popup {
+   
+  border: 2px solid gray;
+  border-radius: 5px;
+    position: fixed;
+    top: 59%;
+    left: 50%;
+    transform: translate(-18%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+}
+
+.popup-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #aaa;
+}
+
+.popup-content .close:hover {
+    color: black;
+}
+
+.popup-content h2 {
+    margin-top: 0;
+}
+
+// .popup-content ul {
+//     list-style-type: none;
+//     padding: 0;
+// }
+
+// .popup-content ul li {
+//     margin-bottom: 5px;
+// }
+.popup-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.popup-content ul li {
+    margin-bottom: 10px;
+}
+
+// .popup-content label {
+//     display: inline-block;
+//     margin-left: 5px;
+// }
+
+.popup-content input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+// .submit-button {
+//     background-color: #007bff; /* Blue color */
+//     color: white;
+//     border: none;
+//     padding: 5px 10px;
+//     cursor: pointer;
+//     border-radius: 5px;
+// }
+
+// .submit-button:hover {
+//     background-color: #0056b3; /* Darker blue color */
+// }
+
+
+.edit{
+    color: blue;
+    border: none;
+    text-decoration: none;
+    background-color: transparent;
+}
+.delete{
+    color: red;
+    border: none;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+.button-container{
+    text-align: right;
+}
+.button-container button {
+    margin-left: 5px;
+}
+
+
+.filter-button {
+  
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.filter-button:hover {
+    color: #007bff
+}
+
+
+

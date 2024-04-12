@@ -1,0 +1,478 @@
+
+
+<div class="container">
+    <input type="text" class="form-control mb-6" style="border: 2px solid black;" [(ngModel)]="searchTerm"
+        (input)="filterData()" placeholder="Search...">
+
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered">
+            <thead style="white-space: nowrap;text-align: right;">
+                <tr>
+                    <th>Sr No.</th>
+                    <th>EMPLOYEE ID/CARD NO
+                        <i (click)="sortBy('employee_Id')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>NAME OF EMPLOYEE
+                        <i (click)="sortBy('name_Of_employee')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>FATHER NAME
+                        <i (click)="sortBy('Father_Name')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>PRESENT ADDRESS
+                        <i (click)="sortBy('present_Address')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>PERMANENT ADDRESS
+                        <i (click)="sortBy('Permanent_Address')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>CONTACT NO
+                        <i (click)="sortBy('contact_No')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>DEPARTMENT
+                        <i (click)="sortBy('department')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>DESIGNATION
+                        <i (click)="sortBy('designation')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>DATE OF BIRTH
+                        <i (click)="sortBy('date_of_birth')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>DATE OF JOINING
+                        <i (click)="sortBy('date_of_joining')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>BASIC 50%
+                        <i (click)="sortBy('basic_50')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th (click)="sortBy('hra_40')">HRA 40%
+                        <i (click)="sortBy('hra_40')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>CONV.10%
+                        <i (click)="sortBy('conve10')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>GROSS
+                        <i (click)="sortBy('gross')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>BONUS 12.5%
+                        <i (click)="sortBy('bonus_12')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>CTC TOTAL
+                        <i (click)="sortBy('ctc_total')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>BANK ACCOUNT NO
+                        <i (click)="sortBy('bank_Acc_No')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>BANK NAME
+                        <i (click)="sortBy('bank_name')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>BANK ADDRESS
+                        <i (click)="sortBy('bank_Address')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>IFSC CODE
+                        <i (click)="sortBy('FSC_Code')" class="material-icons">
+                            {{ sortOrder === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        </i>
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-light">
+
+
+
+                <!-- <tr *ngFor="let item of employees_Data; index as i ">
+                 -->
+
+                <tr *ngFor="let item of filteredEmployees ||employees_Data; index as i ">
+                    <td>{{i+1}}</td>
+                    <td>{{item.employee_Id}} 
+                        <span><button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'employee_Id')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <!-- <td >{{item.name_Of_employee}}
+                    <button (click)="fun()">submit</button>
+                </td> -->
+                    <td>
+                        {{item.name_Of_employee}}
+                        <span><button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'name_Of_employee')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                        </td>
+                    <td>{{item.Father_Name}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'Father_Name')"><i class="material-icons">filter_alt</i></button>
+                    </span>
+                    </td>
+                    <td>{{item.present_Address}}
+                    <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'present_Address')"><i class="material-icons">filter_alt</i></button>
+                    </span>
+                    </td>
+               
+                    <td style="display: flex">{{item.Permanent_Address}}
+                        <span style="margin-right: 0;">
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'Permanent_Address')"><i class="material-icons">filter_alt</i></button>
+                    </span>
+                    </td>
+               
+                    <td>{{item.contact_No}}
+                        <span >
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'contact_No')"><i class="material-icons">filter_alt</i></button>
+                    </span>
+                    </td>
+                    <td>{{item.department}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'department')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.designation}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'designation')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.date_of_birth}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'date_of_birth')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.date_of_joining}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'date_of_joining')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.basic_50}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'basic_50')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.hra_40}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'hra_40')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.conve10}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'conve10')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.gross}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'gross')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.bonus_12}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'bonus_12')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.ctc_total}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'ctc_total')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.bank_Acc_No}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'bank_Acc_No')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td >{{item.bank_name}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'bank_name')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.bank_Address}}
+                        <span style="margin-right: 0;">
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'bank_Address')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+                    <td>{{item.IFSC_Code}}
+                        <span>
+                        <button class="filter-button" *ngIf="i === 0" (click)="showPopup(item,'IFSC_Code')"><i class="material-icons">filter_alt</i></button>
+                        </span>
+                    </td>
+
+                    <td>
+                        <button class="edit" (click)="editData(item)"><i class="material-icons">edit</i></button>
+                        <button class="delete" (click)="deleteData(item)"> <i class="material-icons">delete</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+  
+    <!-- <div *ngIf="showpop" class="popup">
+        <div class="popup-content">
+            <span class="close" (click)="closePopup()">&times;</span>
+          
+            <div *ngIf="selectedValue">
+                <span>{{ selectedValue }}</span>
+              
+              </div>
+          
+            
+            <input type="text" class="form-control mb-2" placeholder="Search..." [(ngModel)]="searchText" (input)="filterColumnValues()">
+    
+           
+            
+        
+                <li>
+                    <label >
+                        <input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()" />
+                        Select All
+                    </label>
+                </li>
+    
+                
+                <li *ngFor="let value of filteredColumnValues ; let i=index">
+                    <label >
+                        <input type="checkbox" [(ngModel)]="selectedCheckboxes[i]" />
+                        {{ value }}
+                    </label>
+                </li>
+            
+           
+              
+           
+              
+            <div class="button-container">
+                <button class="btn btn-primary" (click)="onSubmit()">Ok</button>
+                <button class="btn btn-danger" (click)="closePopup()">Cancel</button>
+                
+                
+            </div>
+        </div>
+    </div> -->
+    
+    <div *ngIf="showpop" class="popup">
+        <div class="popup-content">
+          <!-- <span class="close" (click)="closePopup()">&times;</span> -->
+          <!-- <div class="close" style="margin-bottom: 500px;"> <button class="btn btn-danger" (click)="closePopup()">close</button></div> -->
+          
+          <!-- <h3 *ngIf="selectedValue" class="selected-checkbox-name">Selected Field: {{ selectedValue }}</h3> -->
+          
+         
+          <!-- <input type="text" class="form-control mb-2" placeholder="Search..." [(ngModel)]="searchText" (input)="filterColumnValues()"> -->
+          
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <input type="text" class="form-control " placeholder="Search..." [(ngModel)]="searchText" (input)="filterColumnValues()">
+            <button style="margin-left: 20px;" class="btn btn-danger" (click)="closePopup()">x</button>
+          </div>
+          
+          <label>
+            <input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()" />
+            Select All
+          </label>
+      
+        
+          <ul>
+            <li *ngFor="let value of filteredColumnValues; let i=index">
+              <label >
+                <input type="checkbox" [(ngModel)]="selectedCheckboxes[i]" /> {{ value }}
+              </label>
+            </li>
+          </ul>
+          
+ 
+          <div class="button-container">
+            <button class="btn btn-primary" (click)="onSubmit()">Save</button>
+            <!-- <button class="btn btn-danger" (click)="closePopup()">Cancel</button> -->
+            <button  class="btn btn-danger" (click)="removeSelectedCheckbox()">remove</button>
+          </div>
+        </div>
+      </div>
+      
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="form-container">
+                    <form [formGroup]="employeeForm">
+
+                        <div>
+                            <h4 style="text-align: center;color: white; margin-bottom: 10px;"> EMPLOYEE FORM</h4>
+                            <label class="form-label">Employee Id/Card No <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="employee_Id" placeholder="Employee_Id">
+
+                            <div *ngIf="employeeForm.get('employee_Id')?.invalid && (employeeForm.get('employee_Id')?.dirty || employeeForm.get('employee_Id')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <label class="form-label">Name Of Employee <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="name_Of_employee" placeholder="Name of the employee">
+
+                            <div *ngIf="employeeForm.get('name_Of_employee')?.invalid && (employeeForm.get('name_Of_employee')?.dirty || employeeForm.get('name_Of_employee')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <label class="form-label">Father Name </label>
+                            <input type="text" class="form-control" formControlName="Father_Name" placeholder="Father Name">
+
+
+                        </div>
+                        <div>
+                            <label class="form-label">present_Address </label>
+                            <input type="text" class="form-control" formControlName="present_Address" placeholder="Present address">
+                        </div>
+                        <div>
+                            <label class="form-label">Permanent_Address <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="Permanent_Address" placeholder="Permanent address">
+                            <div *ngIf="employeeForm.get('Permanent_Address')?.invalid && (employeeForm.get('Permanent_Address')?.dirty || employeeForm.get('Permanent_Address')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">contact_No <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="contact_No" placeholder="Contact No.">
+                            <div *ngIf="employeeForm.get('contact_No')?.invalid && (employeeForm.get('contact_No')?.dirty || employeeForm.get('contact_No')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">department <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="department" placeholder="Department">
+                            <div *ngIf="employeeForm.get('department')?.invalid && (employeeForm.get('department')?.dirty || employeeForm.get('department')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+                        <div>
+
+                            <label class="form-label"> designation <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="designation" placeholder="Designation">
+                            <div *ngIf="employeeForm.get('designation')?.invalid && (employeeForm.get('designation')?.dirty || employeeForm.get('designation')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label"> Date_of_birth <span style="color: red;">*</span></label>
+                            <input type="date" class="form-control" formControlName="date_of_birth" placeholder="Date of Birth">
+                            <div *ngIf="employeeForm.get('date_of_birth')?.invalid && (employeeForm.get('date_of_birth')?.dirty || employeeForm.get('date_of_birth')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label"> date_of_joining <span style="color: red;">*</span></label>
+                            <input type="date" class="form-control" formControlName="date_of_joining" placeholder="Date of Joining">
+                            <div *ngIf="employeeForm.get('date_of_joining')?.invalid && (employeeForm.get('date_of_joining')?.dirty || employeeForm.get('date_of_joining')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label"> basic_50 </label>
+                            <input type="text" class="form-control" formControlName="basic_50" placeholder="Basic 50">
+                        </div>
+                        <div>
+                            <label class="form-label"> hra_40 </label>
+                            <input type="text" class="form-control" formControlName="hra_40" placeholder="HRA 40">
+                        </div>
+                        <div>
+                            <label class="form-label"> conve10 </label>
+                            <input type="text" class="form-control" formControlName="conve10" placeholder="Conve 10">
+                        </div>
+                        <div>
+                            <label class="form-label"> gross </label>
+                            <input type="text" class="form-control" formControlName="gross" placeholder="Gross">
+                        </div>
+                        <div>
+                            <label class="form-label"> bonus_12 </label>
+                            <input type="text" class="form-control" formControlName="bonus_12" placeholder="Bonus 12">
+                        </div>
+                        <div>
+                            <label class="form-label"> ctc_total </label>
+                            <input type="text" class="form-control" formControlName="ctc_total" placeholder="CTC Total">
+                        </div>
+                        <div>
+                            <label class="form-label"> bank_Acc_No </label>
+                            <input type="text" class="form-control" formControlName="bank_Acc_No" placeholder="Bank Acc. No.">
+                            <div *ngIf="employeeForm.get('bank_Acc_No')?.invalid && (employeeForm.get('bank_Acc_No')?.dirty || employeeForm.get('bank_Acc_No')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">bank_name<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="bank_name" placeholder="Bank Name">
+                            <div *ngIf="employeeForm.get('bank_name')?.invalid && (employeeForm.get('bank_name')?.dirty || employeeForm.get('bank_name')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">bank_Address<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="bank_Address" placeholder="Bank Address">
+                            <div *ngIf="employeeForm.get('IFSC_Code')?.invalid && (employeeForm.get('IFSC_Code')?.dirty || employeeForm.get('IFSC_Code')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">IFSC_Code<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" formControlName="IFSC_Code" placeholder="IFSC Code">
+                            <div *ngIf="employeeForm.get('IFSC_Code')?.invalid && (employeeForm.get('IFSC_Code')?.dirty || employeeForm.get('IFSC_Code')?.touched)"
+                                style="color: red;">
+                                Please enter required field
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class="form-label col-md-6" class="d-grid gap-2">
+                                <button type="submit" class="btn btn-success" (click)="submit_Form()">Submit</button>
+                            </div>
+                            <div class="form-label col-md-6" class="d-grid gap-2">
+                                <button type="submit" class="btn btn-danger  " (click)="reset_Form()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
